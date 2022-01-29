@@ -2,6 +2,12 @@ const { converteParaAlgarismoRomano } = require('./algarismosRomanos');
 
 describe('algarismosRomanos', () => {
   describe('converteParaAlgarismoRomano', () => {
+    test('deve retornar INVALIDO quando o valor recebido for 0', () => {
+      const result = converteParaAlgarismoRomano(0);
+
+      expect(result).toEqual('INVALIDO');
+    });
+
     test('deve retornar I quando o valor recebido for 1', () => {
       const result = converteParaAlgarismoRomano(1);
 
