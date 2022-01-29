@@ -13,5 +13,11 @@ describe('algarismosRomanos', () => {
 
       expect(result).toEqual('II');
     });
+
+    test('deve retornar III quando o valor recebido for 3', () => {
+      const result = converteParaAlgarismoRomano(3);
+
+      expect(result).toEqual('III');
+    });
   });
 });
