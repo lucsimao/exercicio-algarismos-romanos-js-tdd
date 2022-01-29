@@ -1,7 +1,7 @@
-const algarismosRomanos = ['I', 'II', 'III'];
+const algarismosRomanos = ['INVALIDO', 'I', 'II', 'III'];
 
 const converteParaAlgarismoRomano = (numero) => {
-  return algarismosRomanos[numero - 1];
+  return algarismosRomanos[numero];
 };
 
 module.exports = { converteParaAlgarismoRomano };
