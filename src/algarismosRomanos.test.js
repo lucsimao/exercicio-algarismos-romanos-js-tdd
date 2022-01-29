@@ -43,5 +43,29 @@ describe('algarismosRomanos', () => {
 
       expect(result).toEqual('VI');
     });
+
+    test('deve retornar VII quando o valor recebido for 7', () => {
+      const result = converteParaAlgarismoRomano(7);
+
+      expect(result).toEqual('VII');
+    });
+
+    test('deve retornar VIII quando o valor recebido for 8', () => {
+      const result = converteParaAlgarismoRomano(8);
+
+      expect(result).toEqual('VIII');
+    });
+
+    test('deve retornar IX quando o valor recebido for 9', () => {
+      const result = converteParaAlgarismoRomano(9);
+
+      expect(result).toEqual('IX');
+    });
+
+    test('deve retornar X quando o valor recebido for 10', () => {
+      const result = converteParaAlgarismoRomano(10);
+
+      expect(result).toEqual('X');
+    });
   });
 });
