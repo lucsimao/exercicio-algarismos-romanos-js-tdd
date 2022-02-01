@@ -1,23 +1,44 @@
-const algarismosRomanos = ['I', 'I', 'V', 'X'];
+const algarismosRomanos = { ['I']: 1, ['V']: 5, ['X']: 10 };
 
 const converteParaAlgarismoRomano = (numero) => {
   if (!numero) return 'INVALIDO';
 
-  const quocienteDivisao = Math.floor(numero / 5);
-  const restoDivisao = numero % 5;
+  return converte(algarismosRomanos, numero);
+};
 
-  if (restoDivisao === 0) return algarismosRomanos[quocienteDivisao + 1];
-  if (restoDivisao === 4)
-    return (
-      algarismosRomanos[quocienteDivisao] +
-      algarismosRomanos[quocienteDivisao + 2]
-    );
-
-  let result = quocienteDivisao ? algarismosRomanos[quocienteDivisao + 1] : '';
-  for (let i = 0; i < restoDivisao; i++) {
-    result = result + algarismosRomanos[quocienteDivisao];
+const converte = (collection, numero) => {
+  if (!numero) {
+    return '';
   }
-  return result;
+
+  const keys = Object.keys(collection);
+
+  let key;
+  const accKeys = {};
+  for (key of keys) {
+    if (numero === collection[key]) {
+      return key;
+    }
+    if (numero > collection[key]) accKeys[key] = collection[key];
+    if (numero < collection[key]) break;
+  }
+
+  const algarism = key || 'I';
+  const rest = collection[key] || 1;
+  const number = numero - rest;
+
+  if (numero < collection[key]) {
+    const ks = Object.keys(accKeys);
+    for (accKey of ks) {
+      const restDiv = collection[key] - numero;
+      if (restDiv === accKeys[accKey]) {
+        return converte(accKeys, restDiv) + key;
+      }
+    }
+    return converte(accKeys, numero);
+  }
+
+  return algarism + converte(collection, number);
 };
 
 module.exports = { converteParaAlgarismoRomano };
