@@ -18,10 +18,12 @@ export const converteParaAlgarismoRomano = (numero: number) => {
   const algarismosExtraídosDoNumero = extrairAlgarismos(numero);
 
   let result = '';
-  for (let i = 0; i < algarismosExtraídosDoNumero.length; i++) {
+  const ultimoÍndiceDoArrayDeAlgarismos =
+    algarismosExtraídosDoNumero.length - 1;
+  for (let i = 0; i <= ultimoÍndiceDoArrayDeAlgarismos; i++) {
     const number = calculaValorRealDoAlgarismo(
       algarismosExtraídosDoNumero[i],
-      algarismosExtraídosDoNumero.length - 1 - i
+      ultimoÍndiceDoArrayDeAlgarismos - i
     );
     result = result + converte(algarismosRomanos, number);
   }
