@@ -139,6 +139,18 @@ describe('algarismosRomanos', () => {
         expect(result).toEqual('XL');
       });
 
+      test('deve retornar XLI quando o valor recebido for 41', () => {
+        const result = converteParaAlgarismoRomano(41);
+
+        expect(result).toEqual('XLI');
+      });
+
+      test('deve retornar XLV quando o valor recebido for 45', () => {
+        const result = converteParaAlgarismoRomano(45);
+
+        expect(result).toEqual('XLV');
+      });
+
       test('deve retornar L quando o valor recebido for 50', () => {
         const result = converteParaAlgarismoRomano(50);
 
@@ -159,7 +171,13 @@ describe('algarismosRomanos', () => {
         expect(result).toEqual('XC');
       });
 
-      test('deve retornar C quando o valor recebido for 50', () => {
+      test('deve retornar LXXIII quando o valor recebido for 73', () => {
+        const result = converteParaAlgarismoRomano(73);
+
+        expect(result).toEqual('LXXIII');
+      });
+
+      test('deve retornar C quando o valor recebido for 100', () => {
         const result = converteParaAlgarismoRomano(100);
 
         expect(result).toEqual('C');
@@ -167,7 +185,7 @@ describe('algarismosRomanos', () => {
     });
 
     describe('quinhentos', () => {
-      test.skip('deve retornar CDXX quando o valor recebido for 420', () => {
+      test('deve retornar CDXX quando o valor recebido for 420', () => {
         const result = converteParaAlgarismoRomano(420);
 
         expect(result).toEqual('CDXX');
@@ -179,7 +197,7 @@ describe('algarismosRomanos', () => {
         expect(result).toEqual('CD');
       });
 
-      test.skip('deve retornar CDXC quando o valor recebido for 490', () => {
+      test('deve retornar CDXC quando o valor recebido for 490', () => {
         const result = converteParaAlgarismoRomano(490);
 
         expect(result).toEqual('CDXC');
@@ -197,6 +215,24 @@ describe('algarismosRomanos', () => {
         const result = converteParaAlgarismoRomano(1000);
 
         expect(result).toEqual('M');
+      });
+
+      test('deve retornar MCMXCI quando o valor recebido for 1991', () => {
+        const result = converteParaAlgarismoRomano(1991);
+
+        expect(result).toEqual('MCMXCI');
+      });
+
+      test('deve retornar MMMCCCXXXIII quando o valor recebido for 3333', () => {
+        const result = converteParaAlgarismoRomano(3333);
+
+        expect(result).toEqual('MMMCCCXXXIII');
+      });
+
+      test('deve retornar MMMCMXCIX quando o valor recebido for 3999', () => {
+        const result = converteParaAlgarismoRomano(3999);
+
+        expect(result).toEqual('MMMCMXCIX');
       });
     });
   });

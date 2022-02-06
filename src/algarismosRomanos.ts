@@ -1,6 +1,7 @@
 export interface Collection {
   [key: string]: number;
 }
+
 const algarismosRomanos: Collection = {
   ['I']: 1,
   ['V']: 5,
@@ -14,7 +15,26 @@ const algarismosRomanos: Collection = {
 export const converteParaAlgarismoRomano = (numero: number) => {
   if (!numero) return 'INVALIDO';
 
-  return converte(algarismosRomanos, numero);
+  const numberAlgarims = extrairAlgarismos(numero);
+
+  let result = '';
+  for (let i = numberAlgarims.length - 1; i >= 0; i--) {
+    const number = numberAlgarims[i] * Math.pow(10, i);
+    result = result + converte(algarismosRomanos, number);
+  }
+  return result;
+};
+
+const extrairAlgarismos = (number: number) => {
+  let algarismos: number[] = [];
+  let result = number;
+  while (result > 0) {
+    const restDiv = result % 10;
+    algarismos = algarismos.concat([restDiv]);
+    result = Math.floor(result / 10);
+  }
+
+  return algarismos;
 };
 
 const converte = (collection: Collection, numero: number): string => {
