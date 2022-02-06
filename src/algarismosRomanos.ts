@@ -20,14 +20,20 @@ export const converteParaAlgarismoRomano = (numero: number) => {
   let result = '';
   const ultimoÍndiceDoArrayDeAlgarismos =
     algarismosExtraídosDoNumero.length - 1;
+
   for (let i = 0; i <= ultimoÍndiceDoArrayDeAlgarismos; i++) {
-    const number = calculaValorRealDoAlgarismo(
+    const novoAlgarismo = converteAlgarismoIndividual(
       algarismosExtraídosDoNumero[i],
       ultimoÍndiceDoArrayDeAlgarismos - i
     );
-    result = result + converte(algarismosRomanos, number);
+    result = result + novoAlgarismo;
   }
   return result;
+};
+
+const converteAlgarismoIndividual = (algarismo: number, ordem: number) => {
+  const number = calculaValorRealDoAlgarismo(algarismo, ordem);
+  return converte(algarismosRomanos, number);
 };
 
 const calculaValorRealDoAlgarismo = (algarismo: number, ordem: number) => {
