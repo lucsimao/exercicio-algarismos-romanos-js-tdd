@@ -62,31 +62,31 @@ const converte = (coleção: Collection, numero: number): string => {
   const chavesDaCollection = Object.keys(coleção);
 
   let chave: string = '';
-  const accKeys: Collection = {};
+  const chavesAtuais: Collection = {};
   for (chave of chavesDaCollection) {
     if (numero === coleção[chave]) {
       return chave;
     }
-    if (numero > coleção[chave]) accKeys[chave] = coleção[chave];
+    if (numero > coleção[chave]) chavesAtuais[chave] = coleção[chave];
     if (numero < coleção[chave]) break;
   }
 
   const algarismoRomano = chave || 'I';
-  const rest = coleção[chave] || 1;
-  const number = numero - rest;
 
   if (numero < coleção[chave]) {
-    const ks = Object.keys(accKeys);
-    for (let accKey of ks) {
-      const diff = coleção[chave] - numero;
-      if (diff === accKeys[accKey]) {
-        return converte(accKeys, diff) + algarismoRomano;
+    const chavesAuxiliares = Object.keys(chavesAtuais);
+    for (let chaveAuxiliar of chavesAuxiliares) {
+      const diferença = coleção[chave] - numero;
+      if (diferença === chavesAtuais[chaveAuxiliar]) {
+        return converte(chavesAtuais, diferença) + algarismoRomano;
       }
     }
-    return converte(accKeys, numero);
+    return converte(chavesAtuais, numero);
   }
+  const valorDoAlgarismo = coleção[chave] || 1;
+  const diferençaDoNumero = numero - valorDoAlgarismo;
 
-  return algarismoRomano + converte(coleção, number);
+  return algarismoRomano + converte(coleção, diferençaDoNumero);
 };
 
 module.exports = { converteParaAlgarismoRomano };
