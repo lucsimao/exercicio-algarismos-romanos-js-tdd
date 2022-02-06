@@ -16,11 +16,9 @@ export const converteParaAlgarismoRomano = (numero: number) => {
   if (!numero) return 'INVALIDO';
 
   const algarismosExtraídosDoNumero = extrairAlgarismos(numero);
-
   let result = '';
   const ultimoÍndiceDoArrayDeAlgarismos =
     algarismosExtraídosDoNumero.length - 1;
-
   for (let i = 0; i <= ultimoÍndiceDoArrayDeAlgarismos; i++) {
     const novoAlgarismo = converteAlgarismoIndividual(
       algarismosExtraídosDoNumero[i],
@@ -28,12 +26,15 @@ export const converteParaAlgarismoRomano = (numero: number) => {
     );
     result = result + novoAlgarismo;
   }
+
   return result;
 };
 
 const converteAlgarismoIndividual = (algarismo: number, ordem: number) => {
   const number = calculaValorRealDoAlgarismo(algarismo, ordem);
-  return converte(algarismosRomanos, number);
+  const result = converte(algarismosRomanos, number);
+
+  return result;
 };
 
 const calculaValorRealDoAlgarismo = (algarismo: number, ordem: number) => {
@@ -43,15 +44,16 @@ const calculaValorRealDoAlgarismo = (algarismo: number, ordem: number) => {
 };
 
 const extrairAlgarismos = (number: number) => {
-  let algarismos: number[] = [];
-  let result = number;
-  while (result > 0) {
-    const restDiv = result % 10;
-    algarismos = [restDiv].concat(algarismos);
-    result = Math.floor(result / 10);
+  let result: number[] = [];
+  let auxiliar = number;
+
+  for (; auxiliar > 0; ) {
+    const restoDaDivisão = auxiliar % 10;
+    result = [restoDaDivisão, ...result];
+    auxiliar = Math.floor(auxiliar / 10);
   }
 
-  return algarismos;
+  return result;
 };
 
 const converte = (collection: Collection, numero: number): string => {
