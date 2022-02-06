@@ -61,24 +61,24 @@ const converte = (coleção: Collection, numero: number): string => {
 
   const chavesDaCollection = Object.keys(coleção);
 
-  let key: string = '';
+  let chave: string = '';
   const accKeys: Collection = {};
-  for (key of chavesDaCollection) {
-    if (numero === coleção[key]) {
-      return key;
+  for (chave of chavesDaCollection) {
+    if (numero === coleção[chave]) {
+      return chave;
     }
-    if (numero > coleção[key]) accKeys[key] = coleção[key];
-    if (numero < coleção[key]) break;
+    if (numero > coleção[chave]) accKeys[chave] = coleção[chave];
+    if (numero < coleção[chave]) break;
   }
 
-  const algarism = key || 'I';
-  const rest = coleção[key] || 1;
+  const algarism = chave || 'I';
+  const rest = coleção[chave] || 1;
   const number = numero - rest;
 
-  if (numero < coleção[key]) {
+  if (numero < coleção[chave]) {
     const ks = Object.keys(accKeys);
     for (let accKey of ks) {
-      const diff = coleção[key] - numero;
+      const diff = coleção[chave] - numero;
       if (diff === accKeys[accKey]) {
         return converte(accKeys, diff) + algarism;
       }
