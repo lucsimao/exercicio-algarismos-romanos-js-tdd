@@ -71,7 +71,7 @@ const converte = (coleção: Collection, numero: number): string => {
     if (numero < coleção[chave]) break;
   }
 
-  const algarism = chave || 'I';
+  const algarismoRomano = chave || 'I';
   const rest = coleção[chave] || 1;
   const number = numero - rest;
 
@@ -80,13 +80,13 @@ const converte = (coleção: Collection, numero: number): string => {
     for (let accKey of ks) {
       const diff = coleção[chave] - numero;
       if (diff === accKeys[accKey]) {
-        return converte(accKeys, diff) + algarism;
+        return converte(accKeys, diff) + algarismoRomano;
       }
     }
     return converte(accKeys, numero);
   }
 
-  return algarism + converte(coleção, number);
+  return algarismoRomano + converte(coleção, number);
 };
 
 module.exports = { converteParaAlgarismoRomano };
