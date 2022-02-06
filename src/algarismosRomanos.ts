@@ -56,31 +56,31 @@ const extrairAlgarismos = (number: number) => {
   return result;
 };
 
-const converte = (collection: Collection, numero: number): string => {
+const converte = (coleção: Collection, numero: number): string => {
   if (!numero) {
     return '';
   }
 
-  const keys = Object.keys(collection);
+  const chavesDaCollection = Object.keys(coleção);
 
   let key: string = '';
   const accKeys: Collection = {};
-  for (key of keys) {
-    if (numero === collection[key]) {
+  for (key of chavesDaCollection) {
+    if (numero === coleção[key]) {
       return key;
     }
-    if (numero > collection[key]) accKeys[key] = collection[key];
-    if (numero < collection[key]) break;
+    if (numero > coleção[key]) accKeys[key] = coleção[key];
+    if (numero < coleção[key]) break;
   }
 
   const algarism = key || 'I';
-  const rest = collection[key] || 1;
+  const rest = coleção[key] || 1;
   const number = numero - rest;
 
-  if (numero < collection[key]) {
+  if (numero < coleção[key]) {
     const ks = Object.keys(accKeys);
     for (let accKey of ks) {
-      const diff = collection[key] - numero;
+      const diff = coleção[key] - numero;
       if (diff === accKeys[accKey]) {
         return converte(accKeys, diff) + algarism;
       }
@@ -88,7 +88,7 @@ const converte = (collection: Collection, numero: number): string => {
     return converte(accKeys, numero);
   }
 
-  return algarism + converte(collection, number);
+  return algarism + converte(coleção, number);
 };
 
 module.exports = { converteParaAlgarismoRomano };
