@@ -15,13 +15,22 @@ const algarismosRomanos: Collection = {
 export const converteParaAlgarismoRomano = (numero: number) => {
   if (!numero) return 'INVALIDO';
 
-  const numberAlgarims = extrairAlgarismos(numero);
+  const algarismosExtraídosDoNumero = extrairAlgarismos(numero);
 
   let result = '';
-  for (let i = numberAlgarims.length - 1; i >= 0; i--) {
-    const number = numberAlgarims[i] * Math.pow(10, i);
+  for (let i = 0; i < algarismosExtraídosDoNumero.length; i++) {
+    const number = calculaValorRealDoAlgarismo(
+      algarismosExtraídosDoNumero[i],
+      algarismosExtraídosDoNumero.length - 1 - i
+    );
     result = result + converte(algarismosRomanos, number);
   }
+  return result;
+};
+
+const calculaValorRealDoAlgarismo = (algarismo: number, ordem: number) => {
+  const result = algarismo * Math.pow(10, ordem);
+
   return result;
 };
 
@@ -30,7 +39,7 @@ const extrairAlgarismos = (number: number) => {
   let result = number;
   while (result > 0) {
     const restDiv = result % 10;
-    algarismos = algarismos.concat([restDiv]);
+    algarismos = [restDiv].concat(algarismos);
     result = Math.floor(result / 10);
   }
 
