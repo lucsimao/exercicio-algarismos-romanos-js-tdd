@@ -1,4 +1,7 @@
-const algarismosRomanos = {
+export interface Collection {
+  [key: string]: number;
+}
+const algarismosRomanos: Collection = {
   ['I']: 1,
   ['V']: 5,
   ['X']: 10,
@@ -8,21 +11,21 @@ const algarismosRomanos = {
   ['M']: 1000,
 };
 
-const converteParaAlgarismoRomano = (numero) => {
+export const converteParaAlgarismoRomano = (numero: number) => {
   if (!numero) return 'INVALIDO';
 
   return converte(algarismosRomanos, numero);
 };
 
-const converte = (collection, numero) => {
+const converte = (collection: Collection, numero: number): string => {
   if (!numero) {
     return '';
   }
 
   const keys = Object.keys(collection);
 
-  let key;
-  const accKeys = {};
+  let key: string = '';
+  const accKeys: Collection = {};
   for (key of keys) {
     if (numero === collection[key]) {
       return key;
@@ -37,7 +40,7 @@ const converte = (collection, numero) => {
 
   if (numero < collection[key]) {
     const ks = Object.keys(accKeys);
-    for (accKey of ks) {
+    for (let accKey of ks) {
       const diff = collection[key] - numero;
       if (diff === accKeys[accKey]) {
         return converte(accKeys, diff) + algarism;

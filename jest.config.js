@@ -3,12 +3,16 @@ const root = resolve(__dirname);
 module.exports = {
   rootDir: root,
   displayName: 'unit-tests',
-  testMatch: ['<rootDir>/src/**/*.test.js'],
+  testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   clearMocks: true,
+  preset: 'ts-jest',
+  setupFilesAfterEnv: ['./jest.setup.ts'],
   collectCoverageFrom: [
-    'src/**/*.js',
-    '!src/**/*.test.js',
+    'src/**/*.ts',
+    '!src/**/*.spec.ts',
+    '!src/**/index.ts',
+    '!src/main/Main.ts',
   ],
   coverageThreshold: {
     global: {
