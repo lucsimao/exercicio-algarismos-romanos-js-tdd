@@ -57,9 +57,7 @@ const extrairAlgarismos = (number: number) => {
 };
 
 const converte = (coleção: Collection, numero: number): string => {
-  if (!numero) {
-    return '';
-  }
+  if (!numero) return '';
 
   const chavesDaCollection = Object.keys(coleção);
 
