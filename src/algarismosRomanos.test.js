@@ -131,5 +131,73 @@ describe('algarismosRomanos', () => {
         expect(result).toEqual('XX');
       });
     });
+
+    describe('cinquenta', () => {
+      test('deve retornar XL quando o valor recebido for 40', () => {
+        const result = converteParaAlgarismoRomano(40);
+
+        expect(result).toEqual('XL');
+      });
+
+      test('deve retornar L quando o valor recebido for 50', () => {
+        const result = converteParaAlgarismoRomano(50);
+
+        expect(result).toEqual('L');
+      });
+
+      test('deve retornar LX quando o valor recebido for 60', () => {
+        const result = converteParaAlgarismoRomano(60);
+
+        expect(result).toEqual('LX');
+      });
+    });
+
+    describe('cem', () => {
+      test('deve retornar XC quando o valor recebido for 90', () => {
+        const result = converteParaAlgarismoRomano(90);
+
+        expect(result).toEqual('XC');
+      });
+
+      test('deve retornar C quando o valor recebido for 50', () => {
+        const result = converteParaAlgarismoRomano(100);
+
+        expect(result).toEqual('C');
+      });
+    });
+
+    describe('quinhentos', () => {
+      test.skip('deve retornar CDXX quando o valor recebido for 420', () => {
+        const result = converteParaAlgarismoRomano(420);
+
+        expect(result).toEqual('CDXX');
+      });
+
+      test('deve retornar CD quando o valor recebido for 400', () => {
+        const result = converteParaAlgarismoRomano(400);
+
+        expect(result).toEqual('CD');
+      });
+
+      test.skip('deve retornar CDXC quando o valor recebido for 490', () => {
+        const result = converteParaAlgarismoRomano(490);
+
+        expect(result).toEqual('CDXC');
+      });
+
+      test('deve retornar D quando o valor recebido for 500', () => {
+        const result = converteParaAlgarismoRomano(500);
+
+        expect(result).toEqual('D');
+      });
+    });
+
+    describe('mil', () => {
+      test('deve retornar M quando o valor recebido for 1000', () => {
+        const result = converteParaAlgarismoRomano(1000);
+
+        expect(result).toEqual('M');
+      });
+    });
   });
 });
