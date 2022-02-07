@@ -6,13 +6,7 @@ export const converteAlgarismo = (
 ): string => {
   if (!numero) return '';
 
-  const chavesDaCollection = Object.keys(coleção);
-
-  const { chave, chavesAtuais } = processaAlgarismoIgual(
-    chavesDaCollection,
-    numero,
-    coleção
-  );
+  const { chave, chavesAtuais } = processaAlgarismoIgual(numero, coleção);
 
   if (numero < coleção[chave]) {
     const algarismoAntesDoMaior = processaAlgarismoAntesDoMaior(
@@ -29,10 +23,10 @@ export const converteAlgarismo = (
 };
 
 const processaAlgarismoIgual = (
-  chavesDaCollection: string[],
   numero: number,
   coleção: Collection
 ): { chave: string; chavesAtuais: Collection } => {
+  const chavesDaCollection = Object.keys(coleção);
   const chavesAtuais: Collection = {};
   let chave: string = '';
   for (chave of chavesDaCollection) {
