@@ -7,17 +7,11 @@ export const converteAlgarismo = (
 
   const chavesDaCollection = Object.keys(coleção);
 
-  let chave: string = '';
-  const chavesAtuais: Collection = {};
-  for (chave of chavesDaCollection) {
-    if (numero === coleção[chave]) {
-      return chave;
-    }
-    if (numero > coleção[chave]) {
-      chavesAtuais[chave] = coleção[chave];
-    }
-    if (numero < coleção[chave]) break;
-  }
+  const { chave, chavesAtuais } = processaAlgarismoIgual(
+    chavesDaCollection,
+    numero,
+    coleção
+  );
 
   const algarismoRomano = chave || 'I';
 
@@ -35,6 +29,26 @@ export const converteAlgarismo = (
   const diferençaDoNumero = numero - valorDoAlgarismo;
 
   return algarismoRomano + converteAlgarismo(coleção, diferençaDoNumero);
+};
+
+const processaAlgarismoIgual = (
+  chavesDaCollection: string[],
+  numero: number,
+  coleção: Collection
+): { chave: string; chavesAtuais: Collection } => {
+  const chavesAtuais: Collection = {};
+  let chave: string = '';
+  for (chave of chavesDaCollection) {
+    if (numero === coleção[chave]) {
+      return { chave, chavesAtuais };
+    }
+    if (numero > coleção[chave]) {
+      chavesAtuais[chave] = coleção[chave];
+    }
+    if (numero < coleção[chave]) break;
+  }
+
+  return { chave, chavesAtuais };
 };
 
 const processaAlgarismoAntesDoMaior = (
