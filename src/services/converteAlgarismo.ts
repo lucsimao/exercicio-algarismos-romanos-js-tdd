@@ -1,4 +1,5 @@
 import { Collection } from '../interfaces/Collection';
+
 export const converteAlgarismo = (
   coleção: Collection,
   numero: number
@@ -13,8 +14,6 @@ export const converteAlgarismo = (
     coleção
   );
 
-  const algarismoRomano = chave || 'I';
-
   if (numero < coleção[chave]) {
     const algarismoAntesDoMaior = processaAlgarismoAntesDoMaior(
       chavesAtuais,
@@ -25,10 +24,8 @@ export const converteAlgarismo = (
 
     return algarismoAntesDoMaior || converteAlgarismo(chavesAtuais, numero);
   }
-  const valorDoAlgarismo = coleção[chave] || 1;
-  const diferençaDoNumero = numero - valorDoAlgarismo;
 
-  return algarismoRomano + converteAlgarismo(coleção, diferençaDoNumero);
+  return processaAlgarismoDepois(chave, coleção, numero);
 };
 
 const processaAlgarismoIgual = (
@@ -66,4 +63,16 @@ const processaAlgarismoAntesDoMaior = (
     }
   }
   return null;
+};
+
+const processaAlgarismoDepois = (
+  chave: string,
+  coleção: Collection,
+  numero: number
+) => {
+  const algarismoRomano = chave || 'I';
+  const valorDoAlgarismo = coleção[chave] || 1;
+  const diferençaDoNumero = numero - valorDoAlgarismo;
+
+  return algarismoRomano + converteAlgarismo(coleção, diferençaDoNumero);
 };
