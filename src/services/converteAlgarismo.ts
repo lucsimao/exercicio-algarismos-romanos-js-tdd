@@ -10,7 +10,6 @@ export const converteAlgarismo = (
 
   if (numero < coleção[chave]) {
     const algarismoAntesDoMaior = processaAlgarismoAntesDoMaior(
-      chavesAtuais,
       coleção,
       chave,
       numero
@@ -43,17 +42,16 @@ const processaAlgarismoIgual = (
 };
 
 const processaAlgarismoAntesDoMaior = (
-  chavesAtuais: Collection,
   coleção: Collection,
   chave: string,
   numero: number
 ) => {
   const algarismoRomano = chave || 'I';
-  const chavesAuxiliares = Object.keys(chavesAtuais);
+  const chavesAuxiliares = Object.keys(coleção);
   for (let chaveAuxiliar of chavesAuxiliares) {
     const diferença = coleção[chave] - numero;
-    if (diferença === chavesAtuais[chaveAuxiliar]) {
-      return converteAlgarismo(chavesAtuais, diferença) + algarismoRomano;
+    if (diferença === coleção[chaveAuxiliar]) {
+      return converteAlgarismo(coleção, diferença) + algarismoRomano;
     }
   }
   return null;
