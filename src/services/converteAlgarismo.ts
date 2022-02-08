@@ -1,8 +1,9 @@
 import { Collection } from '../interfaces/Collection';
+import { algarismosRomanos } from './../mapas/MapaAlgarismosRomanos';
 
 export const converteAlgarismo = (
-  coleção: Collection,
-  numero: number
+  numero: number,
+  coleção: Collection = algarismosRomanos
 ): string => {
   if (!numero) return '';
 
@@ -50,10 +51,10 @@ const processaAlgarismoAntesDoMaior = (
     for (let chaveAuxiliar of chavesAuxiliares) {
       const diferença = coleção[chave] - numero;
       if (diferença === coleção[chaveAuxiliar]) {
-        return converteAlgarismo(coleção, diferença) + algarismoRomano;
+        return converteAlgarismo(diferença, coleção) + algarismoRomano;
       }
     }
-    return converteAlgarismo(chavesAtuais, numero);
+    return converteAlgarismo(numero, chavesAtuais);
   }
   return null;
 };
@@ -67,5 +68,5 @@ const processaAlgarismoDepois = (
   const valorDoAlgarismo = coleção[chave] || 1;
   const diferençaDoNumero = numero - valorDoAlgarismo;
 
-  return algarismoRomano + converteAlgarismo(coleção, diferençaDoNumero);
+  return algarismoRomano + converteAlgarismo(diferençaDoNumero, coleção);
 };

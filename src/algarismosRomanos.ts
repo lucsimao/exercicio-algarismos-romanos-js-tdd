@@ -1,32 +1,15 @@
-import {
-  calculaValorRealDoAlgarismo,
-  extrairAlgarismos,
-} from './helpers/algarismosHelper';
-
-import { algarismosRomanos } from './mapas/MapaAlgarismosRomanos';
 import { converteAlgarismo } from './services/converteAlgarismo';
-
-const converteAlgarismoIndividual = (algarismo: number, ordem: number) => {
-  const number = calculaValorRealDoAlgarismo(algarismo, ordem);
-  const result = converteAlgarismo(algarismosRomanos, number);
-
-  return result;
-};
+import { extrairAlgarismos } from './helpers/algarismosHelper';
 
 export const converteParaAlgarismoRomano = (numero: number) => {
   if (!numero) return 'INVALIDO';
 
-  const algarismosExtraídosDoNumero = extrairAlgarismos(numero);
-  let result = '';
-  const ultimoÍndiceDoArrayDeAlgarismos =
-    algarismosExtraídosDoNumero.length - 1;
+  const algarismosExtraídos = extrairAlgarismos(numero);
 
-  for (let i = 0; i <= ultimoÍndiceDoArrayDeAlgarismos; i++) {
-    const novoAlgarismo = converteAlgarismoIndividual(
-      algarismosExtraídosDoNumero[i],
-      ultimoÍndiceDoArrayDeAlgarismos - i
-    );
-    result = result + novoAlgarismo;
+  let result = '';
+  for (const algarismo of algarismosExtraídos) {
+    const algarismoRomano = converteAlgarismo(algarismo);
+    result += algarismoRomano;
   }
 
   return result;

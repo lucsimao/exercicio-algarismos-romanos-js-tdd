@@ -2,9 +2,11 @@ export const extrairAlgarismos = (number: number) => {
   let result: number[] = [];
   let auxiliar = number;
 
-  for (; auxiliar > 0; ) {
+  for (let i = 0; auxiliar > 0; i++) {
     const restoDaDivisão = auxiliar % 10;
-    result = [restoDaDivisão, ...result];
+    const valorRealAlgarismo = restoDaDivisão * Math.pow(10, i);
+
+    result = [valorRealAlgarismo, ...result];
     auxiliar = Math.floor(auxiliar / 10);
   }
 
