@@ -8,17 +8,14 @@ export const converteAlgarismo = (
 
   const { chave, chavesAtuais } = processaAlgarismoIgual(numero, coleção);
 
-  if (numero < coleção[chave]) {
-    const algarismoAntesDoMaior = processaAlgarismoAntesDoMaior(
-      coleção,
-      chave,
-      numero
-    );
+  const chaveAntes = processaAlgarismoAntesDoMaior(
+    coleção,
+    chave,
+    numero,
+    chavesAtuais
+  );
 
-    return algarismoAntesDoMaior || converteAlgarismo(chavesAtuais, numero);
-  }
-
-  return processaAlgarismoDepois(chave, coleção, numero);
+  return chaveAntes || processaAlgarismoDepois(chave, coleção, numero);
 };
 
 const processaAlgarismoIgual = (
@@ -44,15 +41,19 @@ const processaAlgarismoIgual = (
 const processaAlgarismoAntesDoMaior = (
   coleção: Collection,
   chave: string,
-  numero: number
+  numero: number,
+  chavesAtuais: Collection
 ) => {
-  const algarismoRomano = chave || 'I';
-  const chavesAuxiliares = Object.keys(coleção);
-  for (let chaveAuxiliar of chavesAuxiliares) {
-    const diferença = coleção[chave] - numero;
-    if (diferença === coleção[chaveAuxiliar]) {
-      return converteAlgarismo(coleção, diferença) + algarismoRomano;
+  if (numero < coleção[chave]) {
+    const algarismoRomano = chave || 'I';
+    const chavesAuxiliares = Object.keys(coleção);
+    for (let chaveAuxiliar of chavesAuxiliares) {
+      const diferença = coleção[chave] - numero;
+      if (diferença === coleção[chaveAuxiliar]) {
+        return converteAlgarismo(coleção, diferença) + algarismoRomano;
+      }
     }
+    return converteAlgarismo(chavesAtuais, numero);
   }
   return null;
 };

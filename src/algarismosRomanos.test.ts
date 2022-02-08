@@ -217,6 +217,12 @@ describe('algarismosRomanos', () => {
         expect(result).toEqual('M');
       });
 
+      test('deve retornar MCMLXXXIII quando o valor recebido for 1983', () => {
+        const result = converteParaAlgarismoRomano(1983);
+
+        expect(result).toEqual('MCMLXXXIII');
+      });
+
       test('deve retornar MCMXCI quando o valor recebido for 1991', () => {
         const result = converteParaAlgarismoRomano(1991);
 
